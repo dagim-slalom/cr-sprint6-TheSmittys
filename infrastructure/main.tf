@@ -39,6 +39,14 @@ resource "aws_security_group" "securityGroup" {
     # variable of our ip address
     cidr_blocks = ["${var.ipAddress}"]
   }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
 }
 
 # our ec2 instance to host jenkins
@@ -47,7 +55,7 @@ resource "aws_instance" "jenkins_server" {
   instance_type = "t2.micro"
   ami           = "ami-02f3416038bdb17fb"
   key_name      = var.keyName
-  
+
   tags = {
     Name = var.yourNameTag
   }
