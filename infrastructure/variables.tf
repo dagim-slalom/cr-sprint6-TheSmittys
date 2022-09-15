@@ -4,22 +4,22 @@ variable "cliProfile" {
   default = "default"
 }
 
-# Replace with name for tagging ex. bryse.wagner
-variable "yourNameTag" {
+# Replace to what you want your ec2 instance to be named
+variable "ec2Name" {
   type    = string
-  default = "bryse.wagner"
+  default = "sprint6-cr-theSmittys-jenkinsServer"
 }
 
 # name of your key file
 variable "keyName" {
   type    = string
-  default = "bryseTestKey2"
+  default = "theSmittysKey"
 }
 
 # Added your name -securityGroup is appended to the end of whatever you input
 variable "securityGroupName" {
   type    = string
-  default = "Bryse"
+  default = "theSmittys"
 }
 
 #input your ip address so that you can ssh into the ec2 insance

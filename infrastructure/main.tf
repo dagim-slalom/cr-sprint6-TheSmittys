@@ -31,13 +31,13 @@ resource "local_file" "downloadKey" {
 }
 
 resource "aws_security_group" "securityGroup" {
-  name = "${var.securityGroupName}-securityGroup"
+  name = "${var.securityGroupName}-SG"
   ingress {
     from_port = 0
     to_port   = 0
     protocol  = -1
     # variable of our ip address
-    cidr_blocks = ["${var.ipAddress}"]
+    cidr_blocks = ["184.57.36.105/32","72.180.196.96/32","24.17.254.170/32","23.120.103.1/32"]
   }
 
   egress {
@@ -57,11 +57,22 @@ resource "aws_instance" "jenkins_server" {
   key_name      = var.keyName
 
   tags = {
-    Name = var.yourNameTag
+    Name = var.ec2Name
   }
   # need to create a security group
-  security_groups = ["${var.securityGroupName}-securityGroup"]
-  #user_data = file(var.fileName)
+  security_groups = ["${var.securityGroupName}-SG"]
+#   user_data = <<EOF
+#   #! /bin/bash
+
+#   sudo apt install openjdk-11-jdk -y
+
+#   sudo apt-get update -y
+
+#   sudo apt install jenkins -y
+
+#   sudo sudo systemctl start jenkins
+
+#   EOF
 }
 
 
