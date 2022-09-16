@@ -23,10 +23,22 @@ variable "securityGroupName" {
 }
 
 #input your ip address so that you can ssh into the ec2 insance
-variable "ipAddress" {
-  type    = string
-  default = "184.57.36.105/32"
+variable "allowed_cidr_blocks" {
+  type = list(string)
+  default = [
+    "184.57.36.105/32", # Bryse
+    "72.180.196.96/32", # Alex
+    "23.120.103.1/32",  # Deion
+    "24.17.254.170/32"  # Dagmawi
+  ]
 }
+
+variable "targetRegion" {
+  type    = string
+  default = "us-east-2"
+
+}
+
 # input name of your userdatafile
 variable "userData" {
   type    = string

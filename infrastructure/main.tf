@@ -8,7 +8,7 @@ terraform {
   }
 }
 provider "aws" {
-  region  = "us-east-2"
+  region  = var.targetRegion
   profile = var.cliProfile
 }
 
@@ -36,8 +36,8 @@ resource "aws_security_group" "securityGroup" {
     from_port = 0
     to_port   = 0
     protocol  = -1
-    # variable of our ip address
-    cidr_blocks = ["184.57.36.105/32","72.180.196.96/32","24.17.254.170/32","23.120.103.1/32"]
+    # variable of our ip addresses
+    cidr_blocks = var.allowed_cidr_blocks
   }
 
   egress {
@@ -53,7 +53,7 @@ resource "aws_security_group" "securityGroup" {
 resource "aws_instance" "jenkins_server" {
   # We will want to fix this later so it is not hardcoded
   instance_type = "t2.micro"
-  ami           = "ami-02f3416038bdb17fb"
+  ami           = data.aws_ami.latestUbuntu.id
   key_name      = var.keyName
 
   tags = {
@@ -75,5 +75,32 @@ resource "aws_instance" "jenkins_server" {
 #   EOF
 }
 
+# Data source to get the latest LTS ami for Ubuntu 
+data "aws_ami" "latestUbuntu" {
 
+  most_recent = true
+  owners      = ["099720109477"]
+
+  filter {
+
+    name   = "virtualization-type"
+    values = ["hvm"]
+
+  }
+
+  filter {
+
+    name   = "root-device-type"
+    values = ["ebs"]
+
+  }
+
+  filter {
+
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+
+  }
+
+}
 
