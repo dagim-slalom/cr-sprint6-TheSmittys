@@ -2,6 +2,11 @@ pipeline {
     agent none
     stages {
         stage('Build') {
+            agent {
+                node{
+                    label 'codebuild'
+                }
+            }
             steps {
                 awsCodeBuild(projectName: 'sprint6-cr-theSmittys-codebuild', 
                 credentialsType: 'keys', 
@@ -11,25 +16,25 @@ pipeline {
             }
         }
 
-        stage('Testing') {
-            steps {
+        // stage('Testing') {
+        //     steps {
 
-               echo 'This is the test stage.'
-            }
-        }
+        //        echo 'This is the test stage.'
+        //     }
+        // }
 
-        stage('E2E Testing') {
-            steps {
+        // stage('E2E Testing') {
+        //     steps {
 
-               echo 'This is the E2E Testing stage.'
-            }
-        }
+        //        echo 'This is the E2E Testing stage.'
+        //     }
+        // }
 
-        stage('Deploy') {
-            steps {
+        // stage('Deploy') {
+        //     steps {
 
-               echo 'This is the deploy stage.'
-            }
-        }
+        //        echo 'This is the deploy stage.'
+        //     }
+        // }
     }
 }
