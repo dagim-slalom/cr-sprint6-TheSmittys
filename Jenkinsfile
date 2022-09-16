@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-
+                awsCodeBuild(projectName: 'sprint6-cr-theSmittys-codebuild', 
+                credentialsType: 'keys', 
+                region:  'us-east-2', 
+                sourceControlType: 'jenkins')
                echo 'This is the build stage.'
             }
         }
