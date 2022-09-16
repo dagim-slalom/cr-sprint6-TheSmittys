@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('Build') {  
-            }
+         
             steps {
                 awsCodeBuild(projectName: 'sprint6-cr-theSmittys-codebuild', 
                 credentialsType: 'keys', 
