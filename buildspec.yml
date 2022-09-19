@@ -8,7 +8,9 @@ phases:
     commands:
       #- echo Nothing to do in the pre_build phase...
       - cd src
-      - mvn -B verify --file pom.xml
+      # - mvn -B verify --file pom.xml
+      - mvn install
+
   build:
     commands:
       - echo Build started on `date`
