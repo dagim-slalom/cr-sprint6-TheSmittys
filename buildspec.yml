@@ -1,11 +1,3 @@
-#  Template maven-build
-
-#  This template allows you to test and build your Java project with Maven.
-#  The workflow allows running tests, code checkstyle and security scans on the default branch.
-
-# Prerequisites: pom.xml and appropriate project structure should exist in the repository.
-
-
 version: 0.2
 
 phases:
@@ -15,7 +7,7 @@ phases:
   pre_build:
     commands:
       #- echo Nothing to do in the pre_build phase...
-      - cd api
+      - cd src
       - mvn -B verify --file pom.xml
   build:
     commands:
@@ -31,3 +23,5 @@ phases:
 artifacts:
   files:
     - api/target/webApp.war
+
+    
