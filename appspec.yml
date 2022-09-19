@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: home/ubuntu/java
+
+hooks:
+  BeforeInstall:
+    - location: scripts/BeforeInstall.sh
+
+  ApplicationStart:
+    - location: scripts/ApplicationStart.sh
+      timeout: 180
+  
