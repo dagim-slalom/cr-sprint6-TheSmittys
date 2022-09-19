@@ -15,7 +15,7 @@ phases:
   pre_build:
     commands:
       #- echo Nothing to do in the pre_build phase...
-      - cd api/
+      - cd api
       - mvn -B verify --file pom.xml
   build:
     commands:
