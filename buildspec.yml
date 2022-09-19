@@ -7,9 +7,9 @@ phases:
   pre_build:
     commands:
       #- echo Nothing to do in the pre_build phase...
-      - cd src
-      - mvn -B verify --file pom.xml
-      # - mvn install
+      - cd api/
+      # - mvn -B verify --file pom.xml
+      - mvn install
 
   build:
     commands:
