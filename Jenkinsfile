@@ -8,7 +8,7 @@ pipeline {
                 credentialsType: 'keys', 
                 region:  'us-east-2', 
                 sourceControlType: 'jenkins')
-               echo 'This is the build stage.'
+               echo 'This is the buildd stage.'
             }
         }
 
