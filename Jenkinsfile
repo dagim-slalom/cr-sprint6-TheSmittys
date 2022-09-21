@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-
+               sh 'aws deploy create-deployment --application-name sprint6-cr-theSmittys-app --s3-location bucket=sprint6-cr-thesmittys-codebuild-input,bundleType=zip,key=sprint6-cr-theSmittys-codebuild --deployment-group-name sprint6-cr-theSmittys-DG --region us-east-2'
                echo 'This is the deploy stage.'
             }
         }
